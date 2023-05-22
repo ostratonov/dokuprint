@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash.clonedeep'
+import cloneDeep from 'lodash'
 
 export const isObject = obj => obj === Object(obj)
 
@@ -34,7 +34,7 @@ export const deepMerge = (target, source) => {
 
 export const predicates = {
   isUndefined: value => value === undefined,
-  isString: value => typeof value === 'string',
-  isNil: value => value == null,
+  isString   : value => typeof value === 'string',
+  isNil      : value => value == null,
   isPrimitive: value => value !== Object(value),
 }

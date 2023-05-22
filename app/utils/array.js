@@ -18,4 +18,9 @@ export const keyBy = (array, iteratee) => {
   return result
 }
 
+export const predicates = {
+  odd : (elem, i) => i % 2 === 1,
+  even: (elem, i) => i % 2 === 0,
+}
+
 export const compact = arr => arr.filter(item => !!item)
