@@ -6,7 +6,9 @@
   ],
   "ignorePatterns": [
     "**/*.hbs.js",
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.env",
+    "**/*.env.*"
   ],
   "env": {
     "es6": true,
@@ -14,7 +16,8 @@
   },
   "parserOptions": {
     "ecmaVersion": "latest",
-    "node": true
+    "node": true,
+    "sourceType": "module"
   },
   "globals": {
     "Backendless": true,
@@ -84,7 +87,13 @@
     "OpsUser": true
   },
   "rules": {
-    "keyword-spacing": [ "error", { "before":  true, "after": true } ],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
     "space-before-blocks": "error",
     "no-unneeded-ternary": "error",
     "dot-notation": "error",
