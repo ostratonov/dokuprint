@@ -1,0 +1,287 @@
+{
+  "extends": "eslint:recommended",
+  "root": true,
+  "plugins": [
+    "filenames"
+  ],
+  "ignorePatterns": [
+    "**/*.hbs.js",
+    "**/*.ts"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "node": true
+  },
+  "globals": {
+    "Backendless": true,
+    "CancelReason": true,
+    "CancelReasonGroup": true,
+    "ChatAdmin": true,
+    "ChatConversation": true,
+    "ChatCustomer": true,
+    "ChatPart": true,
+    "ChatTag": true,
+    "CardMachine": true,
+    "Case": true,
+    "CheckListItem": true,
+    "City": true,
+    "Country": true,
+    "CountryArea": true,
+    "CurrencyExchangeRate": true,
+    "Customer": true,
+    "CustomerIdsAllocation": true,
+    "CustomerPricing": true,
+    "CustomerService": true,
+    "DomesticEstimation": true,
+    "CrossBorderEstimation": true,
+    "DHLFacility": true,
+    "OpsAgent": true,
+    "CustomerCheckListItem": true,
+    "Driver": true,
+    "DriverDeposit": true,
+    "DriverLocation": true,
+    "DriverOnlineLog": true,
+    "DriverSchedule": true,
+    "GeoPoint": true,
+    "MallConsolidation": true,
+    "MallSubscription": true,
+    "MallWarehouse": true,
+    "Order": true,
+    "HistoricalOrder": true,
+    "OrderActivityCall": true,
+    "OrderActivityTask": true,
+    "OrderAttempt": true,
+    "OrderChangeLog": true,
+    "OrderCheckListValue": true,
+    "OrderPackage": true,
+    "OrderPayment": true,
+    "OrderStory": true,
+    "OrderStoryStatus": true,
+    "PaymentMethod": true,
+    "PaymentTransaction": true,
+    "Preference": true,
+    "NSSyncTask": true,
+    "NSSyncBlocked": true,
+    "NSSyncArchived": true,
+    "Settings": true,
+    "Subsidiary": true,
+    "TimeSlotsPolicy": true,
+    "Users": true,
+    "Zone": true,
+    "OrderChangeLogAttribute": true,
+    "ICAError": true,
+    "ICALog": true,
+    "ICARequest": true,
+    "EventSubscription": true,
+    "ICAUpdateTask": true,
+    "AnalyticsOrder": true,
+    "AnalyticsOrderError": true,
+    "Banner": true,
+    "OpsUser": true
+  },
+  "rules": {
+    "keyword-spacing": [ "error", { "before":  true, "after": true } ],
+    "space-before-blocks": "error",
+    "no-unneeded-ternary": "error",
+    "dot-notation": "error",
+    "space-in-parens": "error",
+    "no-ex-assign": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "block-like"
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
+    ],
+    "padded-blocks": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "require-atomic-updates": "off",
+    "filenames/match-regex": [
+      2,
+      "^[a-z][a-z\\-\\.\\d]+$",
+      true
+    ],
+    "no-mixed-operators": [
+      "error",
+      {
+        "groups": [
+          [
+            "&&",
+            "?:"
+          ]
+        ]
+      }
+    ],
+    "operator-linebreak": [
+      "error",
+      "before"
+    ],
+    "quote-props": [
+      "warn",
+      "as-needed"
+    ],
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ],
+    // require function declarations instead of expressions
+    "func-style": [
+      "warn",
+      "declaration",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    // disallow declaration of variables already declared in the outer scope
+    // "no-shadow": "warn",
+
+    // require let or const instead of var
+    "require-await": "warn",
+    "no-var": "warn",
+    "no-undef": "warn",
+    "no-unused-vars": "warn",
+    "max-len": [
+      "warn",
+      120
+    ],
+    "no-unexpected-multiline": "error",
+    // require or disallow use of semicolons instead of ASI
+    "semi": [
+      "warn",
+      "never"
+    ],
+    // require the use of === and !== except null comparison
+    "eqeqeq": [
+      "warn",
+      "smart"
+    ],
+    // specify whether double or single quotes should be used
+    "quotes": [
+      "warn",
+      "single",
+      "avoid-escape"
+    ],
+    // require space before/after arrow function"s arrow
+    "arrow-spacing": [
+      "warn",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "arrow-parens": [
+      "warn",
+      "as-needed"
+    ],
+    // suggest using of const declaration for variables that are never modified after declared
+    "prefer-const": [
+      "warn",
+      {
+        "destructuring": "all"
+      }
+    ],
+    // restrict what can be thrown as an exception
+    "no-throw-literal": "warn",
+    // disallow Unused Expressions
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": true
+      }
+    ],
+    // dissallow trailing spaces
+    "no-trailing-spaces": [
+      "warn",
+      {
+        "skipBlankLines": false,
+        "ignoreComments": true
+      }
+    ],
+    // require padding inside curly braces
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "no-sequences": "error",
+    "valid-jsdoc": [
+      2,
+      {
+        "requireReturn": false,
+        "requireParamDescription": false,
+        "requireReturnDescription": false,
+        "prefer": {
+          "arg": "param",
+          "argument": "param",
+          "return": "returns"
+        },
+        "preferType": {
+          "string": "String",
+          "number": "Number",
+          "function": "Function"
+        }
+      }
+    ]
+  }
+}
