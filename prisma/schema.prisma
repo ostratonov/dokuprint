@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  objectId      String    @id @default(uuid())
+  created       DateTime  @default(now())
+  updated       DateTime  @updatedAt
+  username      String    @unique
+  role          String
+  lastSeen      DateTime?
+  password      String
+  salt          String
+  executiveUser String?
+}
+
+model Document {
+  objectId   String              @id @default(uuid())
+  created    DateTime            @default(now())
+  updated    DateTime            @updatedAt
+  ownerId    String
+  body       Json
+  extra      Json
+  protected  Boolean             @default(false)
+  changeLogs DocumentChangeLog[]
+  tasks      DocumentTask[]
+}
+
+model DocumentChangeLog {
+  objectId   String   @id @default(uuid())
+  created    DateTime @default(now())
+  updated    DateTime @updatedAt
+  document   Document @relation(fields: [documentId], references: [objectId])
+  documentId String
+  changes    Json
+}
+
+model DocumentTask {
+  objectId   String   @id @default(uuid())
+  created    DateTime @default(now())
+  updated    DateTime @updatedAt
+  ownerId    String
+  body       Json
+  expiresAt  DateTime
+  document   Document @relation(fields: [documentId], references: [objectId])
+  documentId String
+  status     String
+}
+
+model Preference {
+  objectId String   @id @default(uuid())
+  created  DateTime @default(now())
+  updated  DateTime @updatedAt
+  key      String   @unique
+  value    Json
+}
