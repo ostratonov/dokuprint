@@ -15,7 +15,7 @@ const fillEnvVariables = () => {
 const assertEnvFulfilled = () => {
   const envExample = fs.readFileSync(envFile + '.example', 'utf8')
 
-  const VARIABLES = compact(envExample.split(/=/).filter(predicates.even))
+  const VARIABLES = compact(envExample.split(/[\n=]/).filter(predicates.even))
 
   VARIABLES.forEach(variable => {
     if (process.env[variable] == null) {
