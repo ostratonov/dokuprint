@@ -13,6 +13,16 @@ export default class User extends Base {
     super(args)
   }
 
+  static isAllowedToCreateDocument(type, role) {
+    if (role === Roles.Admin) {
+      return true
+    }
+
+    if (type === 'invoice') {
+      return false
+    }
+  }
+
   toClientShape() {
     return omit(this, ['password', 'salt'])
   }

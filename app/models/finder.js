@@ -31,5 +31,6 @@ export default class Finder {
       where : this.#options.where,
       select: this.#options.props,
     }))
+      .then(model => new this.#model.constructor(model).toClientShape())
   }
 }

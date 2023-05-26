@@ -29,4 +29,8 @@ export default class Base {
   remove() {
     return new new Manager(this).remove()
   }
+
+  save() {
+    return new Manager(this).save()
+  }
 }

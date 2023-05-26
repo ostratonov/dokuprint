@@ -10,7 +10,7 @@ const validationSchema = object({
   role    : oneOf(Object.values(User.Roles)).required(),
 }).required()
 
-export async function registerUser(data) {
+export async function register(data) {
   await validationSchema.assert(data)
 
   return createUser(data)
