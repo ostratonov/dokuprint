@@ -41,6 +41,12 @@ export class NotFoundError extends APIError {
   }
 }
 
+export class UnathorisedError extends APIError {
+  constructor(message) {
+    super(message, 401)
+  }
+}
+
 export const argumentsAssert = (value, message) => {
   if (!value) {
     throw new ValidationError(message)
