@@ -4,7 +4,7 @@ import User from '../../models/user.js'
 import { verifyPassword } from '../../utils/hash.js'
 import { UnathorisedError } from '../../errors.js'
 
-export default async function login(fjwt, data) {
+export async function login(fjwt, data) {
   const { username, password } = data
 
   const user = await new User().findOne({
