@@ -18,13 +18,13 @@ export default class Preference extends Base {
     let value = cache.localCache.get(cacheKey(key))
 
     if (value === undefined) {
-      value = new Promise((resolve, reject) => Preference.findOne({
+      value = new Promise((resolve, reject) => new Preference().findOne({
         select: { value: true },
         where : { key },
       }).then(setting => resolve(setting ? setting.value : null))
         .catch(reject))
 
-      logger.log('Setting value in preference', value)
+      logger.info('Setting value in preference', value)
 
       cache.localCache.put(cacheKey(key), value, 30 * 1000)
     }

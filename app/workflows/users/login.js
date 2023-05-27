@@ -13,15 +13,16 @@ export async function login(fjwt, data) {
       objectId: true,
       salt    : true,
       password: true,
+      role    : true,
     },
-  })
+  }, { direct: true })
 
   if (!user) {
     throw new Error('User not found')
   }
 
   if (verifyPassword(password, user.salt, user.password)) {
-    const token = await fjwt.sign({ username, objectId: user.objectId }, process.env.JWT_SECRET)
+    const token = await fjwt.sign({ username, objectId: user.objectId, role: user.role }, process.env.JWT_SECRET)
 
     return { token }
   }

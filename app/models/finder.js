@@ -2,35 +2,58 @@
 
 import prisma from '../utils/prisma.js'
 import { omitBy } from '../utils/object.js'
+import _ from 'lodash'
 
 export default class Finder {
   #model
   #options
+  #direct
 
-  constructor(model, options) {
-    this.#model = model
-    this.#options = options
+  #resolveModelName() {
+    return _.camelCase(this.#model.constructor.name)
   }
 
-  static create(model, options) {
-    return new Finder(model, options)
+  constructor(model, options, direct) {
+    this.#model = model
+    this.#options = options
+    this.#direct = direct
+  }
+
+  static create(model, options, direct) {
+    return new Finder(model, options, direct)
   }
 
   async find() {
-    const models = await prisma[this.#model.__name].findMany({
+    const models = await prisma[this.#resolveModelName()].findMany({
       where: this.#options.where,
       skip : this.#options.skip,
       take : this.#options.take,
     })
 
-    return models.map(m => new this.#model.constructor(m).toClientShape())
+    return models.map(m => {
+      const constr = new this.#model.constructor(m)
+
+      if (this.#direct) {
+        return constr
+      }
+
+      return constr.toClientShape()
+    })
   }
 
-  pickOne() {
-    return prisma[this.#model.__name].findUnique(omitBy({
-      where : this.#options.where,
-      select: this.#options.props,
+  async pickOne() {
+    const model = await prisma[this.#resolveModelName()].findFirst(omitBy({
+      where  : this.#options.where,
+      include: this.#options.include,
+      select : this.#options.props,
     }))
-      .then(model => new this.#model.constructor(model).toClientShape())
+
+    const constr = new this.#model.constructor(model)
+
+    if (this.#direct) {
+      return constr
+    }
+
+    return constr.toClientShape()
   }
 }

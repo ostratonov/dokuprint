@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@fastify/schedule": "^4.1.0",
     "@prisma/client": "4.14.1",
     "dateformat": "^5.0.3",
     "dotenv": "^16.0.3",
@@ -10,12 +11,13 @@
     "fastify-jwt": "^4.2.0",
     "fastify-swagger": "^5.2.0",
     "lodash": "^4.17.21",
-    "lru-cache": "^9.1.1",
+    "lru-cache": "6.0.0",
     "n": "^9.1.0",
     "nodemon": "^2.0.22",
     "prisma": "^4.14.1",
     "sito": "^1.3.18",
-    "stable": "^0.1.8"
+    "stable": "^0.1.8",
+    "toad-scheduler": "^2.2.0"
   },
   "name": "dokuprint",
   "description": "DMS backend service",

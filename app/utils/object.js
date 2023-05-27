@@ -15,6 +15,27 @@ export const get = (object, path) => {
   return (index && index === length) ? object : undefined
 }
 
+export const set = (object, path, value) => {
+  const flatten = arr => [].concat.apply([], arr)
+
+  path = Array.isArray(path) ? path : path.split('.')
+  const pathElements = flatten(path.map(p => p.includes('[') ? p.split(/[[\].]/).filter(Boolean) : p))
+
+  for (let i = 0; i < pathElements.length - 1; i++) {
+    const pathElement = pathElements[i]
+    const nextPathElement = pathElements[i + 1]
+    const isArrayIndex = /^\d+$/.test(nextPathElement)
+
+    if (!object[pathElement]) {
+      object[pathElement] = isArrayIndex ? [] : {}
+    }
+
+    object = object[pathElement]
+  }
+
+  object[pathElements[pathElements.length - 1]] = value
+}
+
 export const property = path => object => get(object, path)
 
 export const deepMerge = (target, source) => {
@@ -68,8 +89,54 @@ export const omitBy = (
   return result
 }
 
+export const diff = (a, b, attrs) => {
+  return pick(b, compare(pick(a, attrs), pick(b, attrs)))
+}
+
+export const pickDeep = (object, props) => {
+  // support for functional programming
+  if (!props && object instanceof Array) {
+    props = object
+
+    return object => pickDeep(object, props)
+  }
+
+  const result = {}
+
+  props.forEach(path => set(result, path, get(object, path)))
+
+  return result
+}
+
+export const pick = (object, props) => {
+  //support for functional programming
+  if (!props && object instanceof Array) {
+    props = object
+
+    return object => pick(object, props)
+  }
+
+  const result = {}
+
+  props.forEach(prop => {
+    result[prop] = object[prop]
+  })
+
+  return result
+}
+
+export const compare = (a, b, attributes) => {
+  if (!attributes) {
+    attributes = Object.keys(a)
+  }
+
+  return attributes.filter(attr => !equals(a[attr], b[attr]))
+}
+
+export const equals = (a, b) => a === b || JSON.stringify(a) === JSON.stringify(b)
+
 export const predicates = {
   isUndefined: value => value === undefined,
-  isNil: value => value == null,
+  isNil      : value => value == null,
   isPrimitive: value => value !== Object(value),
 }

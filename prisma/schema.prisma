@@ -27,6 +27,7 @@ model Document {
   created    DateTime            @default(now())
   updated    DateTime            @updatedAt
   ownerId    String
+  type       String
   body       Json
   extra      Json
   protected  Boolean             @default(false)
@@ -38,6 +39,7 @@ model DocumentChangeLog {
   objectId   String   @id @default(uuid())
   created    DateTime @default(now())
   updated    DateTime @updatedAt
+  type       String
   document   Document @relation(fields: [documentId], references: [objectId])
   documentId String
   changes    Json

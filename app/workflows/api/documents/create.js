@@ -25,5 +25,5 @@ export async function createDocument(user, payload) {
   return new Document({
     ...payload,
     ownerId: user.objectId,
-  })
+  }).create()
 }

@@ -49,7 +49,7 @@ class LocalCache extends Cache {
     }
 }
 
-class DokuPrintCache extends Cache {
+class DokuprintCache extends Cache {
     constructor() {
         super()
 
@@ -73,4 +73,4 @@ class DokuPrintCache extends Cache {
     }
 }
 
-export default new DokuPrintCache()
+export default new DokuprintCache()

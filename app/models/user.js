@@ -1,7 +1,6 @@
 'use strict'
 
 import Base from './base.js'
-import { omit } from '../utils/object.js'
 
 const Roles = {
   Admin: 'admin',
@@ -24,7 +23,10 @@ export default class User extends Base {
   }
 
   toClientShape() {
-    return omit(this, ['password', 'salt'])
+    delete this.password
+    delete this.salt
+
+    return this
   }
 }
 

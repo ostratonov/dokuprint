@@ -4,9 +4,7 @@ import fjwt from 'fastify-jwt'
 import { UnathorisedError } from '../errors.js'
 
 export default fastify => {
-  fastify.register(fjwt, {
-    secret: process.env.JWT_SECRET,
-  })
+  fastify.register(fjwt, { secret: process.env.JWT_SECRET })
 
   fastify.decorate('authenticate', async (req, res) => {
     try {
