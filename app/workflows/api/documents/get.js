@@ -7,18 +7,28 @@ export async function getDocument(userId, documentId) {
   const document = await new Document().findOne({
     where: { objectId: documentId, ownerId: userId },
     props: {
-      objectId : true,
-      ownerId  : true,
-      type     : true,
-      body     : true,
-      extra    : true,
-      created: true,
-      updated: true,
+      objectId: true,
+      ownerId : true,
+      type    : true,
+      body    : true,
+      extra   : true,
+      created : true,
+      updated : true,
 
       changeLogs: {
         select: {
           type   : true,
           changes: true,
+        },
+      },
+      tasks     : {
+        select : {
+          status   : true,
+          body     : true,
+          expiresAt: true,
+        },
+        orderBy: {
+          expiresAt: 'asc',
         },
       },
     },

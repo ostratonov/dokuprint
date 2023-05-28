@@ -8,5 +8,29 @@
         <div class="title"> {{ title }} </div>
         <div class="periodicNumber"> Порядковий номер документу №{{ periodNumber }} </div>
 
+        <div class="fromToContainer">
+            <div class="from">
+                <div class="fromTitle"> Відправник</div>
+                <div class="fromName"> ПІБ: {{ fromName }} </div>
+                <div class="fromAddress"> Адреса: {{ fromAddress }} </div>
+                <div class="fromPhone"> Телефон: {{ dashIfNull fromPhone }} </div>
+            </div>
+
+            <div class="to">
+                <div class="fromTitle"> Отримувач</div>
+                <div class="fromName"> ПІБ: {{ toName }} </div>
+                <div class="fromAddress">Адреса:  {{ toAddress }} </div>
+                <div class="fromPhone"> Телефон: {{ dashIfNull toPhone }} </div>
+            </div>
+        </div>
+
+        <div class="separator"> Текст угоди </div>
+
+        <div class="main-text"> {{ body }} </div>
+
+        <div class="fromToContainer">
+            <div class="sign"> Підпис: ________________________</div>
+            <div class="date"> Дата створення документу: {{ formatDate created 'dd-mm-yyyy' }} </div>
+        </div>
     </div>
 {{/main}}

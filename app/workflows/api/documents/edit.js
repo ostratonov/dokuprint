@@ -11,7 +11,9 @@ function getChanges(document, payload) {
 }
 
 export async function editDocument(userId, documentId, payload) {
-  const document = await new Document().findOne({ where: { objectId: documentId, ownerId: userId } })
+  const document = await new Document().findOne({
+    where: { objectId: documentId, ownerId: userId },
+  })
 
   notFoundAssert(document, 'Document not found or you do not have access to it')
 

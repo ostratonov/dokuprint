@@ -1,3 +1,8 @@
+body {
+    font-family: Arial, serif;
+    font-size: 22px;
+}
+
 .wrapper {
     height: 100%;
     width: 100%;
@@ -11,5 +16,73 @@
 .background {
     position: absolute;
     color: rgba(0, 0, 0, 0.1);
+}
 
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.periodicNumber {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.separator {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+
+.fromToContainer {
+    margin-top: 50px;
+    display: table;
+    width: 100%;
+    height: 100px;
+    page-break-inside: avoid;
+}
+
+.from {
+    display: table-cell;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+}
+
+.to {
+    display: table-cell;
+    text-align: right;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+}
+
+.fromTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-text {
+    margin-top: 50px;
+    font-size: 22px;
+    height: 58%
+}
+
+.sign {
+    display: table-cell;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+}
+
+.date {
+    display: table-cell;
+    text-align: right;
+    width: 50%;
+    height: 100%;
+    padding: 0;
 }

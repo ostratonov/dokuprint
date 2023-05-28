@@ -1,6 +1,6 @@
 'use strict'
 
-import { omit } from '../utils/object'
+import { omit, omitBy, predicates } from '../utils/object'
 import _ from 'lodash'
 import { SystemProps } from '../constants.js'
 import prisma from '../utils/prisma.js'
@@ -31,7 +31,7 @@ export default class Manager {
 
     const model = await prisma[this.#resolveModelName()].update({
       where: { objectId: this.#model.objectId },
-      data : omit(this.#model, SystemProps),
+      data : omit(omitBy(this.#model, predicates.isNil), SystemProps),
     })
 
     return new this.#model.constructor(model)
