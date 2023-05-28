@@ -1,0 +1,15 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.logo img {
+    height: 100px;
+    width: 100px;
+}
+
+.background {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.1);
+
+}

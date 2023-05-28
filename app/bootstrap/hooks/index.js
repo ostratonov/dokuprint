@@ -39,6 +39,10 @@ export default fastify => {
     done()
   })
 
+  fastify.addHook('preHandler', (req, reply, done) => {
+    done()
+  })
+
   fastify.addHook('onResponse', (req, reply, done) => {
     const ms = reply.getResponseTime()
 

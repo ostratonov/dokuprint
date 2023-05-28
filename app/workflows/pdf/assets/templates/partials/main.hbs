@@ -1,0 +1,6 @@
+{{> head}}
+{{#each items}}
+    {{#repeat ../copies}}
+        {{> @partial-block }}
+    {{/repeat}}
+{{/each}}

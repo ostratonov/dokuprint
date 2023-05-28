@@ -23,16 +23,22 @@ model User {
 }
 
 model Document {
-  objectId   String              @id @default(uuid())
-  created    DateTime            @default(now())
-  updated    DateTime            @updatedAt
-  ownerId    String
-  type       String
-  body       Json
-  extra      Json
-  protected  Boolean             @default(false)
-  changeLogs DocumentChangeLog[]
-  tasks      DocumentTask[]
+  objectId     String              @id @default(uuid())
+  created      DateTime            @default(now())
+  updated      DateTime            @updatedAt
+  ownerId      String
+  type         String
+  title        String              @default("Документ")
+  from         Json?
+  to           Json?
+  periodNumber Int                 @unique @default(autoincrement())
+  items        Json?
+  details      Json?
+  body         Json
+  extra        Json
+  protected    Boolean             @default(false)
+  changeLogs   DocumentChangeLog[]
+  tasks        DocumentTask[]
 }
 
 model DocumentChangeLog {

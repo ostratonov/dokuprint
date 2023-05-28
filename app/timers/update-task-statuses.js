@@ -12,5 +12,5 @@ export default function() {
 
   const task = new AsyncTask(__filename, () => actualiseStatuses().then(log), err => logger.error(err))
 
-  return new SimpleIntervalJob({ seconds: 10 }, task)
+  return new SimpleIntervalJob({ seconds: 60 }, task)
 }

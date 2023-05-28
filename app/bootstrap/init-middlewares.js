@@ -1,10 +1,20 @@
 'use strict'
 
 import fjwt from 'fastify-jwt'
+import fastifyStatic from '@fastify/static'
 import { UnathorisedError } from '../errors.js'
+import { fileURLToPath } from 'url'
+import path, { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default fastify => {
   fastify.register(fjwt, { secret: process.env.JWT_SECRET })
+
+  fastify.register(fastifyStatic, {
+    root: path.resolve(__dirname, '../../content'),
+  })
 
   fastify.decorate('authenticate', async (req, res) => {
     try {
