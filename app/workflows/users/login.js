@@ -3,6 +3,7 @@
 import User from '../../models/user.js'
 import { verifyPassword } from '../../utils/hash.js'
 import { UnathorisedError } from '../../errors.js'
+import _ from 'lodash'
 
 export async function login(fjwt, data) {
   const { username, password } = data
@@ -17,8 +18,8 @@ export async function login(fjwt, data) {
     },
   }, { direct: true })
 
-  if (!user) {
-    throw new Error('User not found')
+  if (_.isEmpty(user)) {
+    throw new UnathorisedError('User not found')
   }
 
   if (verifyPassword(password, user.salt, user.password)) {

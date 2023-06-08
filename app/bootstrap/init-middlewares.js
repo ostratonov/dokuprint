@@ -16,6 +16,14 @@ export default fastify => {
     root: path.resolve(__dirname, '../../content'),
   })
 
+  fastify.addHook('onError', (request, reply, error, done) => {
+    if (error.status) {
+      reply.code(error.status)
+    }
+
+    done()
+  })
+
   fastify.decorate('authenticate', async (req, res) => {
     try {
       await req.jwtVerify()
